@@ -1,19 +1,31 @@
 console.log("hello");
 
 function DrawBubblechart(sampleId) {
-    console.log("DrawBubblechart()");
+    console.log(`DrawBubblechart(${sampleId})`);
 }
 
 function DrawBargraph(sampleId) {
-    console.log("Drawbargraph()");
+    console.log(`Drawbargraph(${sampleId})`);
 }
 
 function ShowMetaData(sampleId) {
-    console.log("ShowMetaData()");
+    console.log(`ShowMetaData(${sampleId})`);
 }
 
 function DrawGauge(sampleId) {
-    console.log("DrawGauge()");
+    console.log(`DrawGauge(${sampleId})`);
+}
+
+function optionChanged(sampleId) {
+    console.log(`optionChanged: ${sampleId}`);
+
+    DrawBargraph(sampleId);
+
+    DrawBubblechart(sampleId);
+
+    ShowMetaData(sampleId);
+
+    DrawGauge(sampleId);
 }
 
 function InitDashboard() {
