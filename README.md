@@ -2,7 +2,9 @@
 ## About
 The purpose of this repository is to showcase a dashboard using belly button biodiversity data. This dashboard allows one to select a sample ID and it's information will be displayed as text, a bar chart, a bubble chart, and a gauge. This is done in **javascript** using the **D3 library** and **Plotly**.
 
-Credit to instructor **Dominic LaBella** for the tutorial, help, and code on this assignment. 
+Credit to instructor **Dominic LaBella** for the tutorial, help, and code on this assignment.
+
+View [dashboard](https://herzf012.github.io/belly-button-dashboard/). 
 
 ## Test Subject ID No. selector
 A selector used for user input to select a sample ID which is then used to display data.
