@@ -5,7 +5,6 @@ function DrawBargraph(sampleId) {
     console.log(`Drawbargraph(${sampleId})`);
 
     d3.json(url).then(data => {
-        console.log(data);
 
         let samples = data.samples;
         let resultArray = samples.filter(s => s.id == sampleId);
@@ -117,6 +116,36 @@ function ShowMetaData(sampleId) {
 
 function DrawGauge(sampleId) {
     console.log(`DrawGauge(${sampleId})`);
+
+    d3.json(url).then(data => {
+
+        let metaData = data.metadata;
+        let resultArray = metaData.filter(s => s.id == sampleId);
+        let result = resultArray[0];
+
+        // Set wash frequency letiable
+        let wfreqs = result.wfreq;
+
+        // Set and wrap wash data in an array for plotting
+        let washData = [
+            {
+                domain: {x: [0, 1], y: [0, 1]},
+                value: wfreqs,
+                title: {text: "Wash Frequency"},
+                type: "indicator",
+                mode: "gauge+number",
+                gauge: {
+                    axis: {range: [null, 9]}
+                }
+            }
+        ];
+
+        // Set layout for plot
+        let layout = {width: 600, height: 500, margin: {t: 0, b: 0}};
+
+        // Call Plotly function
+        Plotly.newPlot("gauge", washData, layout);
+    });
 }
 
 function optionChanged(sampleId) {
@@ -141,7 +170,6 @@ function InitDashboard() {
         console.log("Here's the data:", data);
 
         let sampleNames = data.names;
-        console.log("Here are the sample names:", sampleNames);
 
         // Populate the dropdown box
         for (let i = 0; i < sampleNames.length; i++) {
