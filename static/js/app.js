@@ -1,5 +1,3 @@
-console.log("hello");
-
 // Define a global variable to hold the URL
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
@@ -64,7 +62,7 @@ function DrawBubblechart(sampleId) {
             marker: {
                 size: sample_values,
                 color: otu_ids,
-                //colorscale: "Earth"
+                colorscale: "Earth"
             }
         };
 
@@ -80,19 +78,41 @@ function DrawBubblechart(sampleId) {
         };
 
         // Call the Plotly function
-        //Plotly.newPlot()
+        Plotly.newPlot("bubble", bubbleArray, bubbleLayout);
 
 
     });
-
-
-
-
 
 }
 
 function ShowMetaData(sampleId) {
     console.log(`ShowMetaData(${sampleId})`);
+
+    d3.json(url).then(data => {
+
+        let metaData = data.metadata;
+        let resultArray = metaData.filter(s => s.id == sampleId);
+        let result = resultArray[0];
+
+        // Set letiables to pull out relavent dat
+        let ids = result.id;
+        let ethnicities = result.ethnicity;
+        let genders = result.gender;
+        let ages = result.age;
+        let locations = result.location;
+        let bbtypes = result.bbtype;
+        let wfreqs = result.wfreq;
+
+        // Display relavent data in the "Demographic Info" box in html file
+        document.getElementById("id").innerHTML = `id: ${ids}`;
+        document.getElementById("ethnicity").innerHTML = `ethnicity: ${ethnicities}`;
+        document.getElementById("gender").innerHTML = `gender: ${genders}`;
+        document.getElementById("age").innerHTML = `age: ${ages}`;
+        document.getElementById("location").innerHTML = `location: ${locations}`;
+        document.getElementById("bbtype").innerHTML = `bbtype: ${bbtypes}`;
+        document.getElementById("wfreq").innerHTML = `wfreq: ${wfreqs}`;
+
+    });
 }
 
 function DrawGauge(sampleId) {
